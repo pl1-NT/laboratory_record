@@ -1,0 +1,53 @@
+cmake_minimum_required(VERSION 3.8)
+project(my_robot_pkg)
+👉️説明不要。
+
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
+👉️あるとかっこいい
+
+find_package(ament_cmake REQUIRED) 
+👉️依存するros2pkgを書く。ament_cmakeはビルド方式の指定。、cでincludeする外部パッケージはこことpackage.xml両方に基本書くっぽい。pythonでimpportしてるやつはpackage.xmlにdependするだけでいい。
+
+add_executable(test_cpp_publisher src/test_publisher.cpp)
+👉️実行ファイル名の宣言。
+👉️前者は、実行する時(ros2 runとか)に使う名前（ここで名付ける）
+👉️後者はその実行ファイル名を読んだ時、実際に動くプログラムへのパス
+👉️ちなみに、ros2 nodeで確認できるノード名はまた別にファイル内で宣言する笑
+ament_target_dependencies(test_cpp_publisher rclcpp std_msgs)
+👉️実行ファイルに必要なライブラリを書く
+install(TARGETS test_cpp_publisher DESTINATION lib/${PROJECT_NAME})
+👉️実行ファイルをinstall/lib/pkg名/test_cpp_publisherにコピー    DESTINATION lib/${PROJECT_NAME}は固定。PROJECT_NAMEは２行目に書いたやつ
+👨‍🏫️cppはコンパイルの必要があるから長い。pythonはスクリプトだからそのまま実行できるので、、、、、
+install(PROGRAMS scripts/my_node.py
+  	DESTINATION lib/${PROJECT_NAME}
+)
+👉️これだけでいい。ちなみに、、、
+install(
+    DIRECTORY scripts/
+    DESTINATION lib/${PROJECT_NAME}
+    FILE_PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ
+                     GROUP_EXECUTE GROUP_READ
+                     WORLD_EXECUTE WORLD_READ
+    FILES_MATCHING PATTERN "*.py"
+)
+👉️こんなことをすると、特定のディレクトリ以下のpyファイルを一気に追加可能。file permissionはみたまま
+
+
+install(DIRECTORY
+  launch
+  urdf
+  rviz
+  worlds
+  meshes
+  config
+  map
+  DESTINATION share/${PROJECT_NAME}/
+)
+👉️ディレクトリを追加。＊＊＊追加先はshareである点に注意。ノード以外はこっち。FindPackageShare('my_package')がlaunch内で使えるようになるけど正味get_package_share_directoryでよさげ？？？🤔️
+
+
+ament_package()
+👉️最後に入れる。おまじない
+

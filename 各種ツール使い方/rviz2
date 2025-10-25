@@ -1,0 +1,20 @@
+用意したurdfファイルをrvizで動かすステップ3つ
+
+＊/robot_description(ros2topic)にlinkとjointの位置情報をパブリッシュ
+
+ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(cat /home/nishi/ros2_ws/src/omuni_description/models/attempt_omni.urdf)"
+
+
+
+
+＊guiでjoint駆動さえるguiを表示？
+
+ros2 run joint_state_publisher_gui joint_state_publisher_gui
+
+
+
+＊xacro-urdf変換
+
+ros2 run xacro xacro src/omuni_description/models/attempt_omni.urdf.xaro  > src/omuni_description/models/attempt_omni.urdf
+
+

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>omuni_description</name>
+  <version>0.0.0</version>
+  <description>TODO: Package description</description>
+  <maintainer email="touki2424@gmail.com">pl1-NT</maintainer>
+  <license>TODO: Apache 2.0</license>
+いつもの。package formatはros2の時 3
+
+<buildtool_depend>ament_cmake</buildtool_depend>
+Cmakelistがある（＝.c系がある）ならcmake,なあければpython
+
+<depend>rclcpp</depend>
+<depend>std_msgs</depend>
+<depend>rclpy</depend>
+ビルド、実行時両方使う人達。基本これでいい。
+
+<exec_depend>python3</exec_depend>
+実行時にだけ使う人達。いらない...？
+
+<export>
+  <build_type>ament_cmake</build_type>
+</export>
+build toolと一緒？

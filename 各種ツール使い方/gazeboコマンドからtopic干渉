@@ -1,0 +1,4 @@
+ros2 topic info /cmd_develでトピックのタイプを判別
+Type: geometry_msgs/msg/TwistStampedとでたら
+
+ros2 topic pub /cmd_vel geometry_msgs/msg/TwistStamped "{header: {stamp: {sec: 0, nanosec: 0}, frame_id: 'base_link'}, twist: {linear: {x: 0.5, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.1}}}" -r 10

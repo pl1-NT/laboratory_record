@@ -1,0 +1,26 @@
+あげたいリポに入ってgit initする
+リモートで新しいリポジトリを作る
+そのurlを使って、
+git remote add origin https:....する
+git add
+git commit -m ""
+git push --setupstream origin branch名
+
+パスワードを求められたら
+自分のアカウント→setting→developer settung→personal access token(classis)→generate new_token()classic→repo,admin_repo_hook,dele_repoにてチェックで生成、コピーして使う
+git config --global credential.helper storeを先にうっとくと１回ですむ
+
+2端末から同リポジトリに上げる場合→
+git pull origin test_upload --rebase
+してからadd commit push
+先にコミットしちゃったときは、
+git stash
+git pull origin test_upload --rebase
+git stash pop
+の順で退避させとける
+
+その他コマンド
+git status
+git branch
+git checkout branch名
+

@@ -1,0 +1,10 @@
+python便利関数
+import os
+os.environ.get("OMNI_ROBOT_MODEL", "3w_v2")
+環境変数OMNI_ROBOT_MODELの値を取得する。存在しなければNONE,もしくはこのようにデフォルト値を設定できる
+os.path.join('hoge', 'huga', 'moko.py')
+末尾のファイルまでのパスをひとまとめに
+
+from ament_index_python.packages import get_package_share_directory
+get_package_share_directory(my_ws)
+()内のディレクトリまでのパスを取得

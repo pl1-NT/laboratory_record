@@ -1,0 +1,18 @@
+2025/10/18
+gazeboにモデルをスポーンさせる方法
+① worldファイル(.sdf)内に直接書き込む。簡単なモデルならこれが一番ラク。(ex/firt_world.sdf)
+確認方法： ign gazebo path/to.empty_wld.sdf（ターミナル１）
+	ign service -s /world/empty_world/create \
+  	--reqtype ignition.msgs.EntityFactory \
+  	--reptype ignition.msgs.Boolean \
+  	--timeout 10000 \
+  	--req 'sdf_filename: "path/to/robot.sdf"'
+  	(補足)ign topic -l
+	
+また、sdfの特徴として、
+<pose realative_to>（⇔orizin xyz）が使えたり、
+<mesh><uri>が<mesh filename=>だったり、
+mass,inertia,のaxis/limitの書き方
+親子リンクの指定方法がurdfとはちょっとちがう。
+② xacroファイルでかいて空のワールドにスポーン。今日できたのはこっち
+モデルが多いときとか、基本はこっちのが楽。ただ、xacro形式は直接のインポートができないので、sdfに変換する必要がある。＊＊＊xacro xxx.xacro -o yyy.sdfで展開はできるが、<sdf verision="1.8">のタグを<xml>の中にいれないといけないのと、<robot>を<model>に書き換えが必要

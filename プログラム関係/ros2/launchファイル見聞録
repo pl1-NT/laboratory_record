@@ -1,0 +1,39 @@
+＊＊＊＊＊launchfileの基本設計＊＊＊＊＊＊
+def generate_launch_description():
+	hoge = ...
+	......
+	......
+	ld =LaunchDescription()
+	ld.add_action(hoge)
+	...
+	return ld
+このなかに処理を書いておく。launchすることでld(=LaunchDescription オブジェクトを勝手に持っていく)
+
+
+＊＊＊＊Nodeの使い方＊＊＊＊＊＊＊＊＊
+from launch import LaunchDescriptionが必要
+spawn_robot = Node(
+    package='ros_gz_sim',
+    executable='create',
+    arguments=['-topic', 'robot_description', '-name', robot_model, '-z', '0.1'],
+    output='screen'
+)
+のように、パッケージ名、ファイル名＊１、引数、ログ出力先（logなど）を指定できる。この時spawn_robotにはオブジェクトが渡されるだけ。実行はまだ。
+最後に
+LaunchDescription.add_action(spawn_robot) とするとインスタンス化が可能
+＊１ここで指定するファイルはCMake.listでの宣言が必要
+
+
+＊＊＊＊launchの実行時に引数を追加したい時＊＊＊＊＊＊＊＊
+from launch.actions import DeclareLaunchArgumentが必要
+importの直後に
+ARGUMENTS = [
+    DeclareLaunchArgument('world', 
+                          default_value="empty_world",
+                          description='Gazebo World'),
+    DeclareLaunchArgument(
+            'use_sim_time',
+            default_value='true',
+            description='Use sim time if true'),
+]
+最後にld =LaunchDescription(ARGUMENTS)で有効化
