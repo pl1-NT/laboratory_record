@@ -1,0 +1,7 @@
+初期化(メイン関数内に)
+rclcpp::init(argc, argv);
+auto node = rclcpp::Node::make_shared("hoge_publisher");
+c++でパブリッシャの定義
+auto pub1 = node->create_publisher<std_msgs::msg::Float64MultiArray>(
+        "wheel1_controller/commands", 10
+    );
