@@ -1,0 +1,4 @@
+ワールドファイルにcadモデルを追加するときはsdfにmodelを追加し、中にlinkを記述。geometry,collisionはnameが必須。
+<uri>でmodel://hoge/huga/mumu.daeとしておいて、ign gazeboでコマンドから呼ぶなら環境変数を追加(モデル表示を参照)
+launchからよぶなら、IGN_GAZEBO_RESOURCE_PATHに直前までのパスを追加しておく。(omuni_description ros_gazebo.launch参照)
+

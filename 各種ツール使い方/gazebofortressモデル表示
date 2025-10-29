@@ -1,7 +1,17 @@
 2025/10/18
 gazeboにモデルをスポーンさせる方法
 ① worldファイル(.sdf)内に直接書き込む。簡単なモデルならこれが一番ラク。(ex/firt_world.sdf)
+<model>タグ内にリンクを記載すればいける。ファイルの指定方法は
+<geometry>
+	<mesh>
+     		<uri>model://meshes/apriltag_36h11.stl</uri>  //package以下のディレクトリから始める
+        </mesh>
+</geometry>
+としてから環境変数にpackageまでのパスを加える
+export IGN_GAZEBO_RESOURCE_PATH="Paht/to/your/models/directry"
+printenv IGN_GAZEBO_RESOURCE_PATHで確認
 確認方法： ign gazebo path/to.empty_wld.sdf（ターミナル１）
+
 	ign service -s /world/empty_world/create \
   	--reqtype ignition.msgs.EntityFactory \
   	--reptype ignition.msgs.Boolean \

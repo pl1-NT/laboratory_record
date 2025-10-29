@@ -1,0 +1,13 @@
+
+
+＊＊＊＊普通のカメラ追加＊＊＊＊＊
+①urdfにいつもどおりリンク、ジョイントを追加した後、robotタグ内にgazebo referenceを追記
+②同じくurdf内に
+<plugin filename="libignition-gazebo-sensors-system.so" name="ignition::gazebo::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+</plugin>
+を追加
+③ros2へのブリッジファイルのなかに/cameraトピック(画像データ)、/camera_infoトピック(内部パラメータ)を追記
+  トピック名は①のgazeboタグ内できめた名前
+
+④確認方法: rvizでadd→imageからtopic名で/cameraをえらぶと見える

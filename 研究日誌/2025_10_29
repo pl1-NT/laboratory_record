@@ -1,0 +1,8 @@
+2025/1029
+tagをgazebo内に召喚して認識できた
+
+fixedの親リンクはtf_staticに常に流れるが、contの人はコントローラ１で指令しないとtfに流れない
+
+coutinuousjointがrvizで認識されないので、launchにjoint_publisherを追加したが、今度はgazeboと同期
+が取れなくなった
+
