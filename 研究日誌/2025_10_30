@@ -1,0 +1,12 @@
+複数ロボットを呼びたいが、
+robot_state_descriptionがurfdfを呼んでtfを流す時に
+/robot_description  の名前しかトピックに使えないせい？で2機以上spawnできない
+
+namespaceで区切ることでいけそうな雰囲気あり
+（robot_paramをurdfに追加？）
+states１つ目/robodesc1にpub states２つ目/robo_desc2にpub    １つ目spawn ２つ目spawnの流れではなく、
+states１つ目/robo_descに pub→spawn  states2つめ/robo_descに pub→spawnとすればあるいは。
+
+気づいたらmain.urdf.xacroの名前だけrobot.urdf.xacroにしたつもりが中身も展開後のファイルになってた
+戻してlaunchで呼び出そうとしたがなんかxml構文エラーがでてsimuができない。launchファイルをデフォに戻してテストと、
+最悪もとのコミットに戻すことを検討。進捗なし。
