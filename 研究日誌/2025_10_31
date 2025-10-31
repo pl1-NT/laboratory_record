@@ -1,0 +1,7 @@
+複数ロボットの召喚
+結局robot_state_publisherにnamespaceを適用して,/robot1/robot_descriptionに流しても、ros_gz_simではnamespaceをtw起用できずによみこめない。ので
+ros_gz_simで-stringで直接urdfを渡すと複数台の召喚が可能。ただしコントローラがアクティブにならん。。なんなら/cameraのrviz読み取りも挙動が怪しい。真上からの視点になってる。
+roscontrolのsystem nameを変更させたりしたけどいまいち
+
+リポジトリの読み込みとgz_ros_controlでカスタムプラグインを試したい。joint_trajetyがそれっぽいが軽く試して失敗。broadcasterはいけた。
+ign_gz_controlはgz_に置換しても問題なかった。

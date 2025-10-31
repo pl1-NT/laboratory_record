@@ -1,5 +1,6 @@
 2025/1029
 tagをgazebo内に召喚して認識できた
+ros2 run apriltag_ros apriltag_node --ros-args     -r image_rect:=/camera    -r camera_info:=/camera_info     --params-file `ros2 pkg prefix apriltag_ros`/share/apriltag_ros/cfg/tags_36h11.yaml
 
 fixedの親リンクはtf_staticに常に流れるが、contの人はコントローラ１で指令しないとtfに流れない
 
