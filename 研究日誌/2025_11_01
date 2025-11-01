@@ -1,0 +1,4 @@
+namespaceをいたるところにいれてgz_pluginに<robot_param_node>/r1/robot_state_publisher</robot_param_node>をいれたら1台召喚+操作 2台め召喚だけ までいった。-topic /r1/robo_descでspawnもいけた
+
+controllmanagerとgz_ros_controllがそれぞれ2つずつ実行されちゃって競合してるっぽい。
+
